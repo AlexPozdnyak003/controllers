@@ -66,3 +66,53 @@ class T_05 extends T_04 {
 
 const obj1 = new T_05('alexPozdnyak', 'ya.pozdnyak@yandex.ru', 35);
 console.log(obj1.getData2());
+
+class Controllers {
+  add(controller: any, container: any): void {
+    container.append(controller);
+  }
+  remove(controller: any, container: any): void {}
+}
+
+class Button extends Controllers {
+  title: string = '';
+  classNames: string[] = [];
+  ico: boolean = false;
+  box: HTMLDivElement | null = null;
+  onClick;
+
+  constructor(
+    title: string,
+    className: string[],
+    ico: boolean,
+    box: HTMLDivElement | null,
+    onclick
+  ) {
+    super();
+    this.title = title;
+    this.classNames = className;
+    this.ico = ico;
+    this.box = box;
+    this.onClick = onclick;
+    this.create();
+  }
+
+  create(): void {
+    const button: HTMLButtonElement = document.createElement('button');
+    button.textContent = this.title;
+    button.className = this.classNames.toString() + ' custom-button';
+    button.addEventListener('click', this.onClick);
+    super.add(button, this.box);
+  }
+}
+
+const box = document.querySelector('[data-elem=actions]') as HTMLDivElement;
+
+const button1 = new Button('press', ['gggg tttt'], false, box, function () {
+  console.log('500');
+});
+
+const button2 = new Button('press', ['gggg tttt'], false, box, function () {
+  console.log('900');
+});
+//---- Паттерн MVC view module controllers

@@ -56,4 +56,41 @@ class T_05 extends T_04 {
 //Constructor
 const obj1 = new T_05('alexPozdnyak', 'ya.pozdnyak@yandex.ru', 35);
 console.log(obj1.getData2());
+class Controllers {
+    add(controller, container) {
+        container.append(controller);
+    }
+    remove(controller, container) { }
+}
+class Button extends Controllers {
+    title = '';
+    classNames = [];
+    ico = false;
+    box = null;
+    onClick;
+    constructor(title, className, ico, box, onclick) {
+        super();
+        this.title = title;
+        this.classNames = className;
+        this.ico = ico;
+        this.box = box;
+        this.onClick = onclick;
+        this.create();
+    }
+    create() {
+        const button = document.createElement('button');
+        button.textContent = this.title;
+        button.className = this.classNames.toString() + ' custom-button';
+        button.addEventListener('click', this.onClick);
+        super.add(button, this.box);
+    }
+}
+const box = document.querySelector('[data-elem=actions]');
+const button1 = new Button('press', ['gggg tttt'], false, box, function () {
+    console.log('500');
+});
+const button2 = new Button('press', ['gggg tttt'], false, box, function () {
+    console.log('900');
+});
+//---- Паттерн MVC view module controllers
 //# sourceMappingURL=script.js.map
