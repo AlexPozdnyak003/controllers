@@ -90,7 +90,18 @@ const button1 = new Button('press', ['gggg tttt'], false, box, function () {
     console.log('500');
 });
 const button2 = new Button('press', ['gggg tttt'], false, box, function () {
-    console.log('900');
+    GetData();
 });
+async function GetData() {
+    try {
+        console.log('qqq');
+        const a = await fetch('https://api.github.com/users');
+        const data = await a.json();
+        console.log('Данные GitHub users:', data);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 //---- Паттерн MVC view module controllers
 //# sourceMappingURL=script.js.map
