@@ -3,6 +3,7 @@ interface User {
   email: string;
   age?: number;
 }
+
 // Class Test
 class T_01 {
   name: string = '';
@@ -112,13 +113,19 @@ const button1 = new Button('press', ['gggg tttt'], false, box, function () {
   console.log('500');
 });
 
-const button2 = new Button('press', ['gggg tttt'], false, box, function () {
-  GetData();
-});
+const button2 = new Button(
+  'GetData Users',
+  ['gggg tttt'],
+  false,
+  box,
+  function () {
+    GetData();
+  }
+);
 
 async function GetData() {
   try {
-    console.log('qqq');
+    console.log('Грузим пользователей');
     const a = await fetch('https://api.github.com/users');
     const data = await a.json();
     console.log('Данные GitHub users:', data);
@@ -127,3 +134,4 @@ async function GetData() {
   }
 }
 //---- Паттерн MVC view module controllers
+//-- модульность в JS
